@@ -70,26 +70,28 @@ There is NO existing system that combines BOTH - AI intelligence AND access to y
 
 ---
 
-## SLIDE 2: Literature Survey (Part 1 - Background & Industry Standards)
+## SLIDE 2: Literature Survey (Part 1 - Background & Industry Standards/Algorithms)
 
 ---
 
 ### 📊 PPT SLIDE CONTENT (Copy This to PPT)
 
 **Background of the Problem:**
-• Retail investor base in India: 10+ crore demat accounts (post-COVID growth)
-• Traditional platforms offer trading but lack intelligent assistance
-• AI chatbots exist but cannot access personal financial data
+• Retail investors in India: 10+ crore demat accounts (post-COVID growth)
+• Traditional platforms lack AI-powered personalized assistance
+• General AI chatbots cannot access real user portfolio data
 • Gap: No system combines LLM + Portfolio + Real-time streaming
 
-**Current Industry Standards:**
+**Current Industry Standards / Processes / Algorithms:**
 
-| Platform Type | Examples | Limitation |
-|---------------|----------|------------|
-| Trading Apps | Zerodha, Groww, ET Money | Static dashboards, no AI |
-| Robo-Advisors | Betterment, Wealthfront | No natural language queries |
-| General AI | ChatGPT, Google Bard | Cannot access real portfolio |
-| Banking Platforms | HDFC Securities, ICICI Direct | Complex UI, no personalization |
+| Standard/Algorithm | Description | Used In KUBERA |
+|-------------------|-------------|----------------|
+| **MCP (Model Context Protocol)** | Anthropic's standard for extending LLM with external tools | ✅ 45 tools in 5 servers |
+| **WebSocket Protocol** | Bidirectional real-time communication standard | ✅ LLM response streaming |
+| **JWT (JSON Web Token)** | Stateless authentication standard (RFC 7519) | ✅ Access + Refresh tokens |
+| **bcrypt** | Password hashing algorithm with salt | ✅ Cost factor 12 |
+| **OAuth 2.0 Flow** | Token-based authorization pattern | ✅ Refresh token rotation |
+| **REST API** | Standard for HTTP-based web services | ✅ 47 endpoints |
 
 ---
 
@@ -109,19 +111,24 @@ On the other hand, ChatGPT can explain financial concepts brilliantly, but if yo
 
 This is the gap we identified: the need for an AI that KNOWS your portfolio and can provide PERSONALIZED insights."
 
-#### **Industry Standards - Explain Each Category:**
+#### **Industry Standards/Algorithms - Explain Each:**
 
-"Let me walk you through what exists in the market:
+"We use several industry-standard protocols and algorithms:
 
-1. **Trading Apps (Zerodha, Groww, ET Money)**: These are the most popular platforms. They provide excellent trading functionality, comprehensive market data, and portfolio tracking. BUT - they use static dashboards. You have to manually navigate, interpret charts, and make decisions yourself. There's no AI assistance.
+**1. MCP (Model Context Protocol):**
+This is Anthropic's open standard for giving LLMs access to external tools and data. It's like a universal adapter that lets AI connect to databases, APIs, and services. We built 45 tools across 5 MCP servers - for financial data, technical analysis, governance, news, and visualization.
 
-2. **Robo-Advisors (Betterment, Wealthfront)**: These are automated investment systems popular in the US. They do automated rebalancing and tax optimization. BUT - they're rigid. You cannot have a conversation with them. You cannot ask 'Why did my portfolio drop today?' They just follow preset algorithms.
+**2. WebSocket Protocol:**
+This is the web standard for real-time bidirectional communication. Unlike HTTP (request-response), WebSocket maintains a persistent connection. We use it to stream LLM responses token-by-token, giving users a ChatGPT-like experience where they see the response being typed out.
 
-3. **General AI (ChatGPT, Bard)**: These understand financial concepts very well. They can explain P/E ratios, analyze company fundamentals, discuss market trends. BUT - they have ZERO access to your actual holdings. They cannot give personalized advice because they don't know what stocks YOU own. There are also privacy concerns - would you really share your full portfolio with ChatGPT?
+**3. JWT (JSON Web Token) - RFC 7519:**
+This is the industry standard for stateless authentication. Our access tokens expire in 30 minutes, and refresh tokens last 7 days with JTI (unique ID) for revocation capability. This follows OAuth 2.0 best practices.
 
-4. **Banking Platforms (HDFC, ICICI Securities)**: These are trusted institutions with deep research capabilities. BUT - their interfaces are designed for professional traders. Complex, intimidating for beginners. And they don't offer AI-powered conversational interfaces.
+**4. bcrypt Algorithm:**
+This is the gold standard for password hashing. It includes automatic salting and a configurable cost factor. We use cost factor 12, which takes ~250ms to compute - slow enough to prevent brute force attacks but fast enough for user experience.
 
-None of these solutions provide what KUBERA offers: AI + Portfolio Integration + Real-time Streaming in ONE platform."
+**5. REST API:**
+We follow RESTful conventions for our 47 HTTP endpoints - proper HTTP verbs (GET, POST, PUT, DELETE), meaningful URLs, and JSON request/response bodies."
 
 ---
 
