@@ -132,55 +132,85 @@ We follow RESTful conventions for our 47 HTTP endpoints - proper HTTP verbs (GET
 
 ---
 
-## SLIDE 3: Literature Survey (Part 2 - Research Papers & Comparison Table)
+## SLIDE 3: Literature Survey (Part 2 - State-of-Art Comparison)
 
 ---
 
 ### 📊 PPT SLIDE CONTENT (Copy This to PPT)
 
-**Key Research Papers:**
+**State-of-Art Comparison Table (Identified Parameters):**
 
-| Paper | Key Finding | Gap | KUBERA Solution |
-|-------|-------------|-----|-----------------|
-| Zhang et al. (IEEE 2024) - LLMs in Finance | 87% accuracy in financial reasoning | No portfolio integration | MCP tools connect LLM to user data |
-| Kumar et al. (ACM 2024) - WebSocket | 60% lower latency than HTTP | Not applied to finance/AI | WebSocket for LLM streaming |
-| Patel et al. (Cybersecurity 2023) - FinTech API | JWT+OTP reduces attacks by 90% | Only REST, not WebSocket | JWT for REST + WebSocket |
-| Chen et al. (AI in Business) - Conversational UI | 78% prefer chat over dashboards | Used simulated data | Real portfolio integration |
+| Parameter | Zerodha/Groww | ChatGPT | Robo-Advisors | KUBERA |
+|-----------|---------------|---------|---------------|--------|
+| **AI/LLM Integration** | ❌ None | ✅ Yes | ❌ Rule-based | ✅ GPT-4o-mini |
+| **Real Portfolio Access** | ✅ Own platform | ❌ No access | ✅ Own platform | ✅ User's portfolio |
+| **Natural Language Query** | ❌ No | ✅ Yes | ❌ No | ✅ Yes |
+| **Real-time Streaming** | ❌ HTTP only | ✅ Yes | ❌ No | ✅ WebSocket |
+| **Tool Calling (MCP)** | ❌ No | ❌ Limited | ❌ No | ✅ 45 tools |
+| **Indian Stock Focus** | ✅ NSE/BSE | ❌ Global | ❌ Global | ✅ NSE/BSE only |
+| **Chart Generation** | ✅ Static | ❌ No charts | ❌ Basic | ✅ Interactive Plotly |
+| **Security (JWT+OTP)** | ✅ Yes | ❌ N/A | ✅ Yes | ✅ 4-layer security |
 
-**Research Gap Identified:**
-• No existing architecture combines: LLM + Real Portfolio + WebSocket + Secure Auth
+**Research Gap:** No existing system combines ALL parameters - KUBERA is the first!
 
 ---
 
 ### 📝 SPEAKING NOTES (For Your Preparation)
 
-#### **Research Papers - Explain Each:**
+#### **State-of-Art Comparison - Explain Each Parameter:**
 
-"We reviewed four key research papers to understand the current state of technology and identify gaps:
+"Let me walk you through how KUBERA compares to existing state-of-the-art systems across 8 key parameters:
 
-**Paper 1: Zhang et al. (IEEE 2024) - 'Large Language Models in Financial Applications'**
-This paper studied how well LLMs can reason about financial data. They found that modern LLMs achieve 87% accuracy in financial reasoning tasks. This proves that AI CAN understand finance. BUT - the paper focused only on general financial questions. They did not address how to connect LLMs to personalized user data. That's where we come in - we use MCP (Model Context Protocol) to connect the LLM to 45 specialized tools that can access the user's actual portfolio.
+**1. AI/LLM Integration:**
+- Zerodha/Groww: No AI at all - static dashboards only
+- ChatGPT: Has AI but it's general-purpose, not financial-specific
+- Robo-Advisors: Use rule-based algorithms, not true AI
+- KUBERA: Uses GPT-4o-mini with financial-specific system prompt and 45 tools
 
-**Paper 2: Kumar et al. (ACM 2024) - 'Real-time Web Applications with WebSocket'**
-This paper measured the performance of WebSocket vs traditional HTTP polling. They found WebSocket reduces latency by 60%. This is significant for user experience - responses feel instant. BUT - this paper was generic web development. They didn't apply it to financial applications or AI streaming. We took this finding and implemented WebSocket specifically for streaming LLM responses in a financial context.
+**2. Real Portfolio Access:**
+- Zerodha/Groww: Can access their own platform's data only
+- ChatGPT: Cannot access ANY portfolio - it doesn't know what you own
+- Robo-Advisors: Access only their managed portfolios
+- KUBERA: Accesses user's actual portfolio stored in our database
 
-**Paper 3: Patel et al. (Journal of Cybersecurity 2023) - 'Secure API Design in FinTech'**
-This paper studied security in financial applications. They found that JWT tokens with short expiry reduce security risks by 75%, and OTP-based verification cuts account takeover attempts by 90%. BUT - they only studied REST APIs. WebSocket security was not covered. We extended their recommendations to cover BOTH REST and WebSocket - our WebSocket also uses JWT authentication via query parameters.
+**3. Natural Language Query:**
+- Zerodha/Groww: No natural language - you must click through menus
+- ChatGPT: Excellent natural language understanding
+- Robo-Advisors: No - fixed interfaces only
+- KUBERA: Full natural language - ask anything in plain English/Hindi
 
-**Paper 4: Chen et al. (AI in Business) - 'Conversational Interfaces in Financial Advisory'**
-This paper surveyed users and found that 78% prefer conversational interfaces over traditional dashboards. Natural language queries increased engagement by 45%. BUT - they tested with simulated portfolios, not real user data. We validated this preference and implemented it with REAL portfolio integration."
+**4. Real-time Streaming:**
+- Zerodha/Groww: HTTP request-response, no streaming
+- ChatGPT: Yes, streams responses token-by-token
+- Robo-Advisors: No streaming
+- KUBERA: WebSocket streaming for instant feedback
 
-#### **The Key Research Gap:**
+**5. Tool Calling (MCP):**
+- Zerodha/Groww: No external tool integration
+- ChatGPT: Limited plugins, no financial data tools
+- Robo-Advisors: No tool calling
+- KUBERA: 45 specialized MCP tools for comprehensive analysis
 
-"After reviewing all this literature, we identified a clear gap:
+**6. Indian Stock Focus:**
+- Zerodha/Groww: Yes - focused on NSE/BSE
+- ChatGPT: Global knowledge, no India-specific data access
+- Robo-Advisors: Mostly US-focused
+- KUBERA: Exclusively focused on Indian stocks (NSE/BSE)
 
-There is NO existing system or architecture that combines ALL FOUR:
-1. LLM intelligence (for understanding natural language)
-2. Real portfolio access (personalized data)
-3. WebSocket streaming (real-time experience)
-4. Secure authentication (JWT + OTP for financial data)
+**7. Chart Generation:**
+- Zerodha/Groww: Static charts only
+- ChatGPT: Cannot generate charts
+- Robo-Advisors: Basic pie charts
+- KUBERA: Interactive Plotly charts generated on-demand
 
-KUBERA is the first system that addresses all four requirements together. This is our UNIQUE CONTRIBUTION."
+**8. Security:**
+- Zerodha/Groww: Industry-standard security
+- ChatGPT: Data privacy concerns for sensitive financial info
+- Robo-Advisors: Standard security
+- KUBERA: 4-layer security - JWT + OTP + bcrypt + rate limiting
+
+**The Key Insight:**
+KUBERA is the ONLY system that achieves ALL parameters. This is our unique contribution."
 
 ---
 
